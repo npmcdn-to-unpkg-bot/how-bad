@@ -29,6 +29,9 @@ object Application extends Controller {
     )
   }
 
-  def deleteReview(id: Long) = TODO
+  def deleteReview(id: Long) = Action {
+    Review.delete(id)
+    Redirect(routes.Application.reviews)
+  }
 
 }
