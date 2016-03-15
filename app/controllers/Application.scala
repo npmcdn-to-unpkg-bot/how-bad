@@ -19,7 +19,15 @@ object Application extends Controller {
     Ok(views.html.index(Review.all, reviewForm))
   }
 
-  def newReview = TODO
+  def newReview = Action { implicit request =>
+    reviewForm.bindFromRequest.fold(
+      errors => BadRequest(views.html.index(Review.all, errors)),
+      comments => {
+        Review.create(comments)
+        Redirect(routes.Application.reviews)
+      }
+    )
+  }
 
   def deleteReview(id: Long) = TODO
 
