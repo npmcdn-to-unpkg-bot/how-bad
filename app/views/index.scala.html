@@ -1,7 +1,24 @@
-@(message: String)
+@(reviews: List[Review], reviewForm: Form[String])
 
-@main("Welcome to Play") {
+@import helper._
 
-  @play20.welcome(message)
+@main("Reviews") {
 
+  <h1>@reviews.size review(s)</h1>
+  <ul>
+    @reviews.map { review =>
+      <li>
+        @review.comments
+        @form(routes.Application.deleteReview(review.id)) {
+          <input type="submit" value="Delete">
+        }
+      </li>
+    }
+  </ul>
+
+  <h2>Review a movie</h2>
+  @form(routes.Application.newReview) {
+    @inputText(reviewForm("comments"))
+    <input type="submit" value="Create">
+  }
 }
