@@ -16,12 +16,12 @@ object Application extends Controller {
   val reviewForm = Form("comments" -> nonEmptyText)
 
   def reviews = Action {
-    Ok(views.html.index(Review.all, reviewForm))
+    Ok(views.html.reviews(Review.all, reviewForm))
   }
 
   def newReview = Action { implicit request =>
     reviewForm.bindFromRequest.fold(
-      errors => BadRequest(views.html.index(Review.all, errors)),
+      errors => BadRequest(views.html.reviews(Review.all, errors)),
       comments => {
         Review.create(comments)
         Redirect(routes.Application.reviews)
