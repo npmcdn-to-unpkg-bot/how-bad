@@ -1,0 +1,13 @@
+@(reviewForm: Form[String])
+
+@import helper._
+
+@main("How bad") {
+
+<h1>How bad was the last movie you saw?</h1>
+@form(routes.Application.newReview) {
+  @inputText(reviewForm("comments"))
+  <input type="submit" value="Create">
+}
+
+}

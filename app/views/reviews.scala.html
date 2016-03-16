@@ -1,4 +1,4 @@
-@(reviews: List[Review], reviewForm: Form[String])
+@(reviews: List[Review])
 
 @import helper._
 
@@ -15,10 +15,4 @@
       </li>
     }
   </ul>
-
-  <h2>Review a movie</h2>
-  @form(routes.Application.newReview) {
-    @inputText(reviewForm("comments"))
-    <input type="submit" value="Create">
-  }
 }

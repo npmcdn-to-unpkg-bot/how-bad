@@ -10,21 +10,21 @@ import models.Review
 object Application extends Controller {
 
   def index = Action {
-    Redirect(routes.Application.reviews)
+    Ok(views.html.index(reviewForm))
   }
 
   val reviewForm = Form("comments" -> nonEmptyText)
 
   def reviews = Action {
-    Ok(views.html.reviews(Review.all, reviewForm))
+    Ok(views.html.reviews(Review.all))
   }
 
   def newReview = Action { implicit request =>
     reviewForm.bindFromRequest.fold(
-      errors => BadRequest(views.html.reviews(Review.all, errors)),
+      errors => BadRequest(views.html.index(errors)),
       comments => {
         Review.create(comments)
-        Redirect(routes.Application.reviews)
+        Redirect(routes.Application.index)
       }
     )
   }
