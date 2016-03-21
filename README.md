@@ -4,6 +4,9 @@
 A website that lets you tell the world your opinion about
 any movie. Made with [Scala][2] and the [Play][3] web framework.
 
+For more information, see the [documentation][4].
+
 [1]: http://how-bad.herokuapp.com
 [2]: http://www.scala-lang.org
 [3]: https://www.playframework.com
+[4]: doc/documentation.md
