@@ -1,0 +1,52 @@
+Use case: Create review
+
+1. Logged-in user searches for a film title
+2. Logged-in user finds a film they wish to review
+3. Logged-in user gives a numerical rating to film
+4. Logged-in user may give a reason for said rating
+
+Use case: Rate review
+
+1. Logged-in user selects a review under a film title
+2. Logged-in user creates a response to said review
+3. Response appears under review
+
+Use case: Modify own review
+
+1. Logged-in user accesses their own profile
+2. Logged-in user searches from a list of their own reviews
+3. Logged-in user chooses a review
+4. Logged-in user modifies review
+5. Modifications on review are saved
+
+
+Use case: Delete own review
+
+1. Logged-in user accesses their own profile
+2. Logged-in user searches from a list of their own reviews
+3. Logged-in user chooses a review
+4. Logged-in user deletes review
+5. Review is removed from the database
+
+
+Use case: Browse reviews
+
+1. Any user searches for a film title
+2. Any user chooses a film
+3. Reviews for said film are shown
+
+
+Use case: Modify any review
+
+1. Moderator searches for a review by user
+2. Moderator chooses a review
+3. Moderator modifies review
+4. Modifications on review are saved
+
+
+Use case: Delete any review
+
+1. Moderator searches for a review by user
+2. Moderator chooses a review
+3. Moderator deletes review
+4. Review is removed from public access
