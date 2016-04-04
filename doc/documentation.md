@@ -1,5 +1,7 @@
 # How bad
 
+By [Emil Laine](https://github.com/emlai) and [Tuure Piitulainen](https://github.com/tuutuu)
+
 ## Introduction
 The goal of this project is to create a movie rating website. Users can review
 any movie by giving it a score and optionally some comments. The movie
