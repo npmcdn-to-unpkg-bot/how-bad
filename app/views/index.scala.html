@@ -1,4 +1,4 @@
-@(reviewForm: Form[String])
+@(reviewForm: Form[(String, String)])
 
 @import helper._
 
@@ -6,6 +6,7 @@
 
 <h1>How bad was the last movie you saw?</h1>
 @form(routes.Application.newReview) {
+  @inputText(reviewForm("movie"))
   <span class="glyphicon glyphicon-star-empty"></span>
   <span class="glyphicon glyphicon-star-empty"></span>
   <span class="glyphicon glyphicon-star-empty"></span>

@@ -5,14 +5,15 @@ import play.api.Play.current
 import anorm._
 import anorm.SqlParser._
 
-case class Review(id: Long, comments: String)
+case class Review(id: Long, movie: String, comments: String)
 
 object Review {
 
   val review = {
     get[Long]("id") ~
+    get[String]("movie") ~
     get[String]("comments") map {
-      case id~comments => Review(id, comments)
+      case id~movie~comments => Review(id, movie, comments)
     }
   }
 
@@ -22,9 +23,10 @@ object Review {
     }
   }
 
-  def create(comments: String) {
+  def create(movie: String, comments: String) {
     DB.withConnection { implicit conn =>
-      SQL("insert into review (comments) values ({comments})").on(
+      SQL("insert into review (movie, comments) values ({movie}, {comments})").on(
+        'movie -> movie,
         'comments -> comments
       ).executeUpdate
     }

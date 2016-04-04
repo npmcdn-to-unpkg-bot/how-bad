@@ -13,7 +13,8 @@ object Application extends Controller {
     Ok(views.html.index(reviewForm))
   }
 
-  val reviewForm = Form("comments" -> nonEmptyText)
+  val reviewForm = Form(tuple("movie" -> nonEmptyText,
+                              "comments" -> nonEmptyText))
 
   def reviews = Action {
     Ok(views.html.reviews(Review.all))
@@ -22,8 +23,8 @@ object Application extends Controller {
   def newReview = Action { implicit request =>
     reviewForm.bindFromRequest.fold(
       errors => BadRequest(views.html.index(errors)),
-      comments => {
-        Review.create(comments)
+      formInput => {
+        Review.create(formInput._1, formInput._2)
         Redirect(routes.Application.index)
       }
     )
