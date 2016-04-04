@@ -86,6 +86,8 @@ Use case: Delete any review
 ### Database diagram
 ![database diagram](https://cloud.githubusercontent.com/assets/7543552/14261961/cdb09bfc-fabb-11e5-8a50-1eff5c2284f4.png)
 
+All SQL code is located in [`conf/evolutions/default`](/conf/evolutions/default).
+
 [1]: http://www.omdbapi.com
 [2]: http://www.scala-lang.org
 [3]: https://www.playframework.com
