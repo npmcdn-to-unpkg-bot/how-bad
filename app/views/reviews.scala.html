@@ -5,6 +5,11 @@
 @main("Reviews") {
 
   <h1>@reviews.size review(s)</h1>
+
+  <div class="input-group">
+    <input type="text" class="form-control" placeholder="Search">
+  </div>
+
   <ul>
     @reviews.map { review =>
       <li>
