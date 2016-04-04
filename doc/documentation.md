@@ -81,7 +81,7 @@ Use case: Delete any review
 4. Review is removed from public access
 
 ### Conceptual diagram
-![conceptual diagram](https://cloud.githubusercontent.com/assets/7543552/14256950/e691a32c-faa3-11e5-958a-ea48f7efb9a2.png)
+![conceptual diagram](https://cloud.githubusercontent.com/assets/7543552/14258557/9075f0da-faab-11e5-8fd2-5267bd3935ea.png)
 
 [1]: http://www.omdbapi.com
 [2]: http://www.scala-lang.org
