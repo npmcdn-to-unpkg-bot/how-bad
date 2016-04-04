@@ -13,6 +13,11 @@
   <ul>
     @reviews.map { review =>
       <li>
+        <span class="glyphicon glyphicon-star-empty"></span>
+        <span class="glyphicon glyphicon-star-empty"></span>
+        <span class="glyphicon glyphicon-star-empty"></span>
+        <span class="glyphicon glyphicon-star-empty"></span>
+        <span class="glyphicon glyphicon-star-empty"></span>
         @review.comments
         @form(routes.Application.deleteReview(review.id)) {
           <input type="submit" class="btn btn-danger btn-xs" value="Delete">
