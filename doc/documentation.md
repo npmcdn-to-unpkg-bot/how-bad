@@ -86,6 +86,46 @@ Use case: Delete any review
 ### Database diagram
 ![database diagram](https://cloud.githubusercontent.com/assets/7543552/14261961/cdb09bfc-fabb-11e5-8a50-1eff5c2284f4.png)
 
+#### User
+Attribute  | Data type             | Description
+-----------|-----------------------|--------------------------------------------
+`id`       | integer               | The unique identifier.
+`username` | string, max. 15 chars | The user name chosen during registration. Must be unique.
+
+#### Review
+Attribute  | Data type             | Description
+-----------|-----------------------|--------------------------------------------
+`id`       | integer               | The unique identifier.
+`user_id`  | integer               | The user who made this review.
+`movie_id` | string of 9 characters| The movie that was reviewed.
+`rating`   | integer [0, 10]       | The numerical score given by the reviewer.
+`comments` | string                | Optional free-form comments on the movie.
+
+### Movie
+Attribute  | Data type             | Description
+-----------|-----------------------|--------------------------------------------
+`imdb_id`  | string of 9 characters| The unique identifier of the movie used by the Internet Movie Database.
+
+### Comment
+Attribute  | Data type             | Description
+-----------|-----------------------|--------------------------------------------
+`id`       | integer               | The unique identifier.
+`review_id`| integer               | The review this comment is posted on.
+`user_id`  | integer               | The user who posted this comment.
+`content`  | string                | The text of this comment.
+
+### Vote
+Attribute  | Data type             | Description
+-----------|-----------------------|--------------------------------------------
+`user_id`  | integer               | The user who gave this vote.
+`review_id`| integer               | The review that was voted on.
+
+### Queued
+Attribute  | Data type             | Description
+-----------|-----------------------|--------------------------------------------
+`movie_id` | string of 9 characters| The movie that was queued.
+`user_id`  | integer               | The user who queued the movie.
+
 All SQL code is located in [`conf/evolutions/default`](/conf/evolutions/default).
 
 [1]: http://www.omdbapi.com
