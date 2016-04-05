@@ -25,8 +25,12 @@ object Review {
 
   def create(movie: String, comments: String) {
     DB.withConnection { implicit conn =>
-      SQL("insert into review (movie, comments) values ({movie}, {comments})").on(
+      SQL("""insert into review (user_id, movie, movie_id, rating, comments)
+             values ({user_id}, {movie}, {movie_id}, {rating}, {comments})""").on(
+        'user_id -> 0, // TODO
         'movie -> movie,
+        'movie_id -> "tt0000001", // TODO
+        'rating -> 0, // TODO
         'comments -> comments
       ).executeUpdate
     }
