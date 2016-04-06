@@ -92,6 +92,8 @@ Attribute  | Data type             | Description
 `id`       | integer               | The unique identifier.
 `username` | string, max. 15 chars | The user name chosen during registration. Must be unique.
 
+The user of the application.
+
 #### Review
 Attribute  | Data type             | Description
 -----------|-----------------------|--------------------------------------------
@@ -101,10 +103,14 @@ Attribute  | Data type             | Description
 `rating`   | integer [0, 10]       | The numerical score given by the reviewer.
 `comments` | string                | Optional free-form comments on the movie.
 
+The review of a movie. Consists of a rating and a comment, both given by a user.
+
 ### Movie
 Attribute  | Data type             | Description
 -----------|-----------------------|--------------------------------------------
 `imdb_id`  | string of 9 characters| The unique identifier of the movie used by the Internet Movie Database.
+
+Information of a movie located in the Open Movie Database.
 
 ### Comment
 Attribute  | Data type             | Description
@@ -114,17 +120,23 @@ Attribute  | Data type             | Description
 `user_id`  | integer               | The user who posted this comment.
 `content`  | string                | The text of this comment.
 
+A critique given by a user for a comment.
+
 ### Vote
 Attribute  | Data type             | Description
 -----------|-----------------------|--------------------------------------------
 `user_id`  | integer               | The user who gave this vote.
 `review_id`| integer               | The review that was voted on.
 
+An upvote or a downvote, given by a user to a review to determine the most popular reviews.
+
 ### Queued
 Attribute  | Data type             | Description
 -----------|-----------------------|--------------------------------------------
 `movie_id` | string of 9 characters| The movie that was queued.
 `user_id`  | integer               | The user who queued the movie.
+
+A junction table that allows a user-specific movie watchlist.
 
 All SQL code is located in [`conf/evolutions/default`](/conf/evolutions/default).
 
