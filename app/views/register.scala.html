@@ -1,0 +1,14 @@
+@(registrationForm: Form[(String, String)])
+
+@import helper._
+
+@main("Register") {
+
+<h1>Register</h1>
+@form(routes.Application.register) {
+  @inputText(registrationForm("username"))
+  @inputText(registrationForm("password"))
+  <input type="submit" class="btn btn-success" value="Register">
+}
+
+}

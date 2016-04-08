@@ -35,4 +35,21 @@ object Application extends Controller {
     Redirect(routes.Application.reviews)
   }
 
+  val registrationForm = Form(tuple("username" -> nonEmptyText(1, 15),
+                                    "password" -> nonEmptyText(1, 15)))
+
+  def registration = Action {
+    Ok(views.html.register(registrationForm))
+  }
+
+  def register = Action { implicit request =>
+    registrationForm.bindFromRequest.fold(
+      errors => BadRequest("Invalid submission"),
+      formInput => {
+        // TODO: Create user
+        Ok("Account created")
+      }
+    )
+  }
+
 }
