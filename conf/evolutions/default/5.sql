@@ -1,12 +1,12 @@
-# Votes schema
+# Queued schema
 
 # --- !Ups
 
-CREATE TABLE vote (
-  user_id int NOT NULL,
-  review_id int NOT NULL
+CREATE TABLE queued (
+  movie_id char(9) NOT NULL,
+  user_id int NOT NULL
 );
 
 # --- !Downs
 
-DROP TABLE vote;
+DROP TABLE queued;

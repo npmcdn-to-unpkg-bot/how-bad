@@ -1,12 +1,11 @@
-# Queued schema
+# Movies schema
 
 # --- !Ups
 
-CREATE TABLE queued (
-  movie_id char(9) NOT NULL,
-  user_id int NOT NULL
+CREATE TABLE movie (
+  imdb_id char(9) PRIMARY KEY NOT NULL
 );
 
 # --- !Downs
 
-DROP TABLE queued;
+DROP TABLE movie;
