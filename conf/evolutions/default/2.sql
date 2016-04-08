@@ -2,13 +2,13 @@
 
 # --- !Ups
 
-CREATE SEQUENCE user_id_seq;
-CREATE TABLE user (
-  id integer NOT NULL DEFAULT nextval('user_id_seq'),
+CREATE SEQUENCE account_id_seq;
+CREATE TABLE account (
+  id integer NOT NULL DEFAULT nextval('account_id_seq'),
   username varchar(15)
 );
 
 # --- !Downs
 
-DROP TABLE user;
-DROP SEQUENCE user_id_seq;
+DROP TABLE account;
+DROP SEQUENCE account_id_seq;

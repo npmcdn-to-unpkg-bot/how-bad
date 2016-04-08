@@ -18,13 +18,13 @@ object User {
 
   def all: List[User] = {
     DB.withConnection { implicit conn =>
-      SQL("select * from user").as(user *)
+      SQL("select * from account").as(user *)
     }
   }
 
   def create(username: String) {
     DB.withConnection { implicit conn =>
-      SQL("insert into user (username) values ({username})").on(
+      SQL("insert into account (username) values ({username})").on(
         'username -> username
       ).executeUpdate
     }
@@ -32,7 +32,7 @@ object User {
 
   def delete(id: Long) {
     DB.withConnection { implicit conn =>
-      SQL("delete from user where id = {id}").on(
+      SQL("delete from account where id = {id}").on(
         'id -> id
       ).executeUpdate
     }
