@@ -51,7 +51,7 @@ object Application extends Controller {
     registrationForm.bindFromRequest.fold(
       errors => BadRequest("Invalid submission"),
       formInput => {
-        // TODO: Create user
+        User.create(formInput._1) // TODO: Password
         Ok("Account created")
       }
     )
