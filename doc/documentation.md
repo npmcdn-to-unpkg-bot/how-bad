@@ -84,7 +84,7 @@ Use case: Delete any review
 ![conceptual diagram](https://cloud.githubusercontent.com/assets/7543552/14258557/9075f0da-faab-11e5-8fd2-5267bd3935ea.png)
 
 ### Database diagram
-![database diagram](https://cloud.githubusercontent.com/assets/7543552/14261961/cdb09bfc-fabb-11e5-8a50-1eff5c2284f4.png)
+![database diagram](https://cloud.githubusercontent.com/assets/7543552/14389696/860a3228-fdbc-11e5-93b0-df7ba8284c03.png)
 
 #### User
 Attribute  | Data type             | Description
