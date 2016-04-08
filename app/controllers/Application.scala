@@ -6,6 +6,7 @@ import play.api.data.Forms._
 import play.api.mvc._
 
 import models.Review
+import models.User
 
 object Application extends Controller {
 
@@ -33,6 +34,10 @@ object Application extends Controller {
   def deleteReview(id: Long) = Action {
     Review.delete(id)
     Redirect(routes.Application.reviews)
+  }
+
+  def users = Action {
+    Ok(views.html.users(User.all))
   }
 
   val registrationForm = Form(tuple("username" -> nonEmptyText(1, 15),

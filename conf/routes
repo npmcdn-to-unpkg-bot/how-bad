@@ -9,6 +9,11 @@ GET     /                           controllers.Application.index
 GET     /reviews                    controllers.Application.reviews
 POST    /reviews                    controllers.Application.newReview
 POST    /reviews/:id/delete         controllers.Application.deleteReview(id: Long)
+
+# Users
+GET     /users                      controllers.Application.users
+
+# Registration
 GET     /register                   controllers.Application.registration
 POST    /register                   controllers.Application.register
 
