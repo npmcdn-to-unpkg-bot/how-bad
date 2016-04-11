@@ -10,20 +10,36 @@
     <input type="text" class="form-control" placeholder="Search">
   </div>
 
-  <ul>
+  <br>
+
+  <table class="table">
+    <tr>
+      <th>Movie</th>
+      <th>Rating</th>
+      <th>Comments</th>
+      <th>Actions</th>
+    </tr>
     @reviews.map { review =>
-      <li>
-        @review.movie
-        <span class="glyphicon glyphicon-star-empty"></span>
-        <span class="glyphicon glyphicon-star-empty"></span>
-        <span class="glyphicon glyphicon-star-empty"></span>
-        <span class="glyphicon glyphicon-star-empty"></span>
-        <span class="glyphicon glyphicon-star-empty"></span>
-        @review.comments
-        @form(routes.Application.deleteReview(review.id)) {
-          <input type="submit" class="btn btn-danger btn-xs" value="Delete">
-        }
-      </li>
+      <tr>
+        <td>
+          @review.movie
+        </td>
+        <td>
+          <span class="glyphicon glyphicon-star-empty"></span>
+          <span class="glyphicon glyphicon-star-empty"></span>
+          <span class="glyphicon glyphicon-star-empty"></span>
+          <span class="glyphicon glyphicon-star-empty"></span>
+          <span class="glyphicon glyphicon-star-empty"></span>
+        </td>
+        <td>
+          @review.comments
+        </td>
+        <td>
+          @form(routes.Application.deleteReview(review.id)) {
+            <input type="submit" class="btn btn-danger btn-xs" value="Delete">
+          }
+        </td>
+      </tr>
     }
-  </ul>
+  </table>
 }
