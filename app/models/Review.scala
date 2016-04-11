@@ -5,15 +5,16 @@ import play.api.Play.current
 import anorm._
 import anorm.SqlParser._
 
-case class Review(id: Long, movie: String, comments: String)
+case class Review(id: Long, movie: String, comments: String, reviewerId: Long)
 
 object Review {
 
   val review = {
     get[Long]("id") ~
     get[String]("movie") ~
-    get[String]("comments") map {
-      case id~movie~comments => Review(id, movie, comments)
+    get[String]("comments") ~
+    get[Long]("user_id") map {
+      case id~movie~comments~reviewerId => Review(id, movie, comments, reviewerId)
     }
   }
 

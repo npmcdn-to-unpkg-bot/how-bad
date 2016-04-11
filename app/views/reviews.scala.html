@@ -17,6 +17,7 @@
       <th>Movie</th>
       <th>Rating</th>
       <th>Comments</th>
+      <th>Reviewer</th>
       <th>Actions</th>
     </tr>
     @reviews.map { review =>
@@ -33,6 +34,9 @@
         </td>
         <td>
           @review.comments
+        </td>
+        <td>
+          @User.find(review.reviewerId).username
         </td>
         <td>
           @form(routes.Application.deleteReview(review.id)) {

@@ -16,6 +16,14 @@ object User {
     }
   }
 
+  def find(id: Long): User = {
+    DB.withConnection { implicit conn =>
+      SQL("select * from account where id = {id}").on(
+        'id -> id
+      ).as(user single)
+    }
+  }
+
   def all: List[User] = {
     DB.withConnection { implicit conn =>
       SQL("select * from account").as(user *)
