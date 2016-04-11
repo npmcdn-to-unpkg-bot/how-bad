@@ -40,6 +40,10 @@ object Application extends Controller {
     Ok(views.html.users(User.all))
   }
 
+  def userProfile(id: Long) = Action {
+    Ok(views.html.profile(User.find(id)))
+  }
+
   val registrationForm = Form(tuple("username" -> nonEmptyText(1, 15),
                                     "password" -> nonEmptyText(1, 15)))
 

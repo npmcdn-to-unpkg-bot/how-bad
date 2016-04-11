@@ -12,6 +12,7 @@ POST    /reviews/:id/delete         controllers.Application.deleteReview(id: Lon
 
 # Users
 GET     /users                      controllers.Application.users
+GET     /users/:id                  controllers.Application.userProfile(id: Long)
 
 # Registration
 GET     /register                   controllers.Application.registration

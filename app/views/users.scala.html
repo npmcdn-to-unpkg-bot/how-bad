@@ -19,7 +19,7 @@
     @users.map { user =>
       <tr>
         <td>
-          @user.username
+          <a href="@routes.Application.userProfile(user.id)">@user.username</a>
         </td>
       </tr>
     }
