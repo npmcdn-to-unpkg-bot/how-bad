@@ -145,6 +145,10 @@ To run the app locally, e.g. for testing your changes, start the [Play][3]
 console with `play`, then type `run`. The server should start running on
 [`localhost:9000`](http://localhost:9000) (by default).
 
+## To do
+- logging in
+- write to-do list
+
 [1]: http://www.omdbapi.com
 [2]: http://www.scala-lang.org
 [3]: https://www.playframework.com
