@@ -46,4 +46,12 @@ object User {
     }
   }
 
+  def authenticate(username: String): Option[User] = {
+    DB.withConnection { implicit conn =>
+      SQL("select * from account where username = {username}").on(
+        'username -> username
+      ).as(user singleOpt)
+    }
+  }
+
 }
