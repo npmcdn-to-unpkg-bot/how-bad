@@ -61,4 +61,21 @@ object Application extends Controller {
     )
   }
 
+  def loginPage = Action {
+    Ok(views.html.login(loginForm))
+  }
+
+  def login = Action { implicit request =>
+    loginForm.bindFromRequest.fold(
+      errors => BadRequest("Invalid submission"),
+      formInput => {
+        //TODO: login
+        Ok("Logged in")
+      }
+    )
+  }
+
+  val loginForm = Form(tuple("username" -> nonEmptyText(1, 15),
+                             "password" -> nonEmptyText(1, 15)))
+
 }
