@@ -140,6 +140,11 @@ A junction table that allows a user-specific movie watchlist.
 
 All SQL code is located in [`conf/evolutions/default`](/conf/evolutions/default).
 
+## Running the app
+To run the app locally, e.g. for testing your changes, start the [Play][3]
+console with `play`, then type `run`. The server should start running on
+[`localhost:9000`](http://localhost:9000) (by default).
+
 [1]: http://www.omdbapi.com
 [2]: http://www.scala-lang.org
 [3]: https://www.playframework.com
