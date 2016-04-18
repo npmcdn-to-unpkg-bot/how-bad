@@ -79,6 +79,6 @@ object Application extends Controller {
     )
   }
 
-  val loginForm = Form(tuple("username" -> nonEmptyText(1, 15),
-                             "password" -> nonEmptyText(1, 15)))
+  val loginForm = Form(tuple("username" -> text,
+                             "password" -> text))
 }
