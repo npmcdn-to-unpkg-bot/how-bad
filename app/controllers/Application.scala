@@ -8,22 +8,22 @@ import play.api.mvc._
 import models.Review
 import models.User
 
-object Application extends Controller {
+object Application extends Controller with Secured {
 
-  def index = Action {
-    Ok(views.html.index(reviewForm))
+  def index = withAuth { username => implicit request =>
+    Ok(views.html.index(reviewForm, username))
   }
 
   val reviewForm = Form(tuple("movie" -> nonEmptyText,
                               "comments" -> nonEmptyText))
 
-  def reviews = Action {
-    Ok(views.html.reviews(Review.all))
+  def reviews = withAuth { username => implicit request =>
+    Ok(views.html.reviews(Review.all, username))
   }
 
   def newReview = Action { implicit request =>
     reviewForm.bindFromRequest.fold(
-      errors => BadRequest(views.html.index(errors)),
+      errors => BadRequest(views.html.index(errors, null)),
       formInput => {
         Review.create(formInput._1, formInput._2)
         Redirect(routes.Application.index)
@@ -36,12 +36,12 @@ object Application extends Controller {
     Redirect(routes.Application.reviews)
   }
 
-  def users = Action {
-    Ok(views.html.users(User.all))
+  def users = withAuth { username => implicit request =>
+    Ok(views.html.users(User.all, username))
   }
 
-  def userProfile(id: Long) = Action {
-    Ok(views.html.profile(User.find(id)))
+  def userProfile(id: Long) = withAuth { username => implicit request =>
+    Ok(views.html.profile(User.find(id), username))
   }
 
   val registrationForm = Form(tuple("username" -> nonEmptyText(1, 15),
@@ -72,6 +72,7 @@ object Application extends Controller {
          //TODO: login
         if (User.authenticate(formInput._1).isDefined) {
           Redirect(routes.Application.index)
+            .withSession("username" -> formInput._1)
         } else {
           Redirect(routes.Application.login)
         }

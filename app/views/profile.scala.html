@@ -1,8 +1,8 @@
-@(user: User)
+@(user: User, username: String)
 
 @import helper._
 
-@main(user.username) {
+@main(user.username, username) {
 
   <h1>@user.username</h1>
 

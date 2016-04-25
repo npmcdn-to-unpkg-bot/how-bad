@@ -1,8 +1,8 @@
-@(users: List[User])
+@(users: List[User], username: String)
 
 @import helper._
 
-@main("Users") {
+@main("Users", username) {
 
   <h1>@users.size user(s)</h1>
 

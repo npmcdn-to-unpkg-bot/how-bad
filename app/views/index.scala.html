@@ -1,8 +1,8 @@
-@(reviewForm: Form[(String, String)])
+@(reviewForm: Form[(String, String)], username: String)
 
 @import helper._
 
-@main("How bad") {
+@main("How bad", username) {
 
 <h1>How bad was the last movie you saw?</h1>
 @form(routes.Application.newReview) {
