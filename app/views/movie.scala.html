@@ -1,10 +1,12 @@
-@(movieTitle: String, reviews: List[Review], user: User)
+@(movieTitle: String, posterUrl: String, reviews: List[Review], user: User)
 
 @import helper._
 
 @main(movieTitle, user) {
 
   <h1>@movieTitle</h1>
+
+  <img src="@posterUrl">
 
   <h2>Reviews of @movieTitle</h2>
 

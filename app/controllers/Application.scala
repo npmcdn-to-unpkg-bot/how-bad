@@ -73,7 +73,7 @@ object Application extends Controller with Secured {
 
   def movie(id: String) = withUser { user => implicit request =>
     val omdbResponseJson = makeOmdbRequestById(id)
-    Ok(views.html.movie((omdbResponseJson \ "Title").as[String], Review.findByMovieId(id), user))
+    Ok(views.html.movie((omdbResponseJson \ "Title").as[String], (omdbResponseJson \ "Poster").as[String], Review.findByMovieId(id), user))
   }
 
   def users = withUser { user => implicit request =>
