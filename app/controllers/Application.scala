@@ -30,6 +30,15 @@ object Application extends Controller with Secured {
     Await.result(requestHolder.get, 10 seconds).json
   }
 
+  def makeOmdbRequestById(imdbId: String): JsValue = {
+    val requestHolder: WSRequestHolder =
+      WS.url("http://www.omdbapi.com/")
+        .withHeaders("Accept" -> "application/json")
+        .withRequestTimeout(10000)
+        .withQueryString("i" -> imdbId)
+    Await.result(requestHolder.get, 10 seconds).json
+  }
+
   val reviewForm = Form(tuple("movie" -> nonEmptyText,
                               "comments" -> nonEmptyText))
 
@@ -45,6 +54,7 @@ object Application extends Controller with Secured {
         if ((omdbResponseJson \ "Response").as[String] == "True") {
           Review.create(
             (omdbResponseJson \ "Title").as[String],
+            (omdbResponseJson \ "imdbID").as[String],
             formInput._2,
             user.id
           )
@@ -59,6 +69,11 @@ object Application extends Controller with Secured {
   def deleteReview(id: Long) = Action {
     Review.delete(id)
     Redirect(routes.Application.reviews)
+  }
+
+  def movie(id: String) = withUser { user => implicit request =>
+    val omdbResponseJson = makeOmdbRequestById(id)
+    Ok(views.html.movie((omdbResponseJson \ "Title").as[String], Review.findByMovieId(id), user))
   }
 
   def users = withUser { user => implicit request =>

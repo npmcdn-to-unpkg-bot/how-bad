@@ -10,6 +10,9 @@ GET     /reviews                    controllers.Application.reviews
 POST    /reviews                    controllers.Application.newReview
 POST    /reviews/:id/delete         controllers.Application.deleteReview(id: Long)
 
+# Movies
+GET     /movies/:id                 controllers.Application.movie(id: String)
+
 # Users
 GET     /users                      controllers.Application.users
 GET     /users/:id                  controllers.Application.userProfile(id: Long)
