@@ -21,11 +21,11 @@ object Application extends Controller with Secured {
     Ok(views.html.reviews(Review.all, user))
   }
 
-  def newReview = Action { implicit request =>
+  def newReview = withUser { user => implicit request =>
     reviewForm.bindFromRequest.fold(
-      errors => BadRequest(views.html.index(errors, null)),
+      errors => BadRequest(views.html.index(errors, user)),
       formInput => {
-        Review.create(formInput._1, formInput._2)
+        Review.create(formInput._1, formInput._2, user.id)
         Redirect(routes.Application.index)
       }
     )
