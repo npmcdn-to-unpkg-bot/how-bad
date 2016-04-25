@@ -5,6 +5,7 @@ import scala.concurrent.Await
 import scala.concurrent.duration._
 
 import play.api._
+import play.api.cache._
 import play.api.data._
 import play.api.data.Forms._
 import play.api.mvc._
@@ -22,21 +23,25 @@ object Application extends Controller with Secured {
   }
 
   def makeOmdbRequest(movieName: String): JsValue = {
-    val requestHolder: WSRequestHolder =
-      WS.url("http://www.omdbapi.com/")
-        .withHeaders("Accept" -> "application/json")
-        .withRequestTimeout(10000)
-        .withQueryString("t" -> movieName)
-    Await.result(requestHolder.get, 10 seconds).json
+    Cache.getOrElse[JsValue](movieName) {
+      val requestHolder: WSRequestHolder =
+        WS.url("http://www.omdbapi.com/")
+          .withHeaders("Accept" -> "application/json")
+          .withRequestTimeout(10000)
+          .withQueryString("t" -> movieName)
+      Await.result(requestHolder.get, 10 seconds).json
+    }
   }
 
   def makeOmdbRequestById(imdbId: String): JsValue = {
-    val requestHolder: WSRequestHolder =
-      WS.url("http://www.omdbapi.com/")
-        .withHeaders("Accept" -> "application/json")
-        .withRequestTimeout(10000)
-        .withQueryString("i" -> imdbId)
-    Await.result(requestHolder.get, 10 seconds).json
+    Cache.getOrElse[JsValue](imdbId) {
+      val requestHolder: WSRequestHolder =
+        WS.url("http://www.omdbapi.com/")
+          .withHeaders("Accept" -> "application/json")
+          .withRequestTimeout(10000)
+          .withQueryString("i" -> imdbId)
+      Await.result(requestHolder.get, 10 seconds).json
+    }
   }
 
   val reviewForm = Form(tuple("movie" -> nonEmptyText,
