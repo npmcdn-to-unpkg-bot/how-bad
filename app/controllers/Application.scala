@@ -40,7 +40,7 @@ object Application extends Controller with Secured {
   }
 
   val reviewForm = Form(tuple("movie" -> nonEmptyText,
-                              "comments" -> nonEmptyText))
+                              "comments" -> text))
 
   def reviews = withUser { user => implicit request =>
     Ok(views.html.reviews(Review.all, user))
