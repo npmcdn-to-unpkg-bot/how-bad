@@ -56,7 +56,7 @@ object Application extends Controller {
       errors => BadRequest("Invalid submission"),
       formInput => {
         User.create(formInput._1) // TODO: Password
-        Ok("Account created")
+        Redirect(routes.Application.login)
       }
     )
   }
@@ -71,9 +71,9 @@ object Application extends Controller {
       formInput => {
          //TODO: login
         if (User.authenticate(formInput._1).isDefined) {
-          Ok("Logged in")
+          Redirect(routes.Application.index)
         } else {
-          Ok("凸໒(  ͠ຈ ͟ʖ   ͠ຈ)७凸")
+          Redirect(routes.Application.login)
         }
       }
     )
