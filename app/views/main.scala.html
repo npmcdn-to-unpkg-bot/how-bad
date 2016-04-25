@@ -1,4 +1,4 @@
-@(title: String, username: String)(content: Html)
+@(title: String, user: User)(content: Html)
 
 <!DOCTYPE html>
 
@@ -18,11 +18,11 @@
         <li><a href="@routes.Application.users">Users</a></li>
       </ul>
       <ul class="nav navbar-nav pull-right">
-        @if(username == null) {
+        @if(user == null) {
           <li><a href="@routes.Application.registration"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
           <li><a href="@routes.Application.login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
         } else {
-          <li><a><span class="glyphicon glyphicon-user"></span> @username</a></li>
+          <li><a><span class="glyphicon glyphicon-user"></span> @user.username</a></li>
         }
       </ul>
     </nav>

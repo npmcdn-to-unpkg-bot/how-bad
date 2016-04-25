@@ -10,15 +10,15 @@ import models.User
 
 object Application extends Controller with Secured {
 
-  def index = withAuth { username => implicit request =>
-    Ok(views.html.index(reviewForm, username))
+  def index = withUser { user => implicit request =>
+    Ok(views.html.index(reviewForm, user))
   }
 
   val reviewForm = Form(tuple("movie" -> nonEmptyText,
                               "comments" -> nonEmptyText))
 
-  def reviews = withAuth { username => implicit request =>
-    Ok(views.html.reviews(Review.all, username))
+  def reviews = withUser { user => implicit request =>
+    Ok(views.html.reviews(Review.all, user))
   }
 
   def newReview = Action { implicit request =>
@@ -36,12 +36,12 @@ object Application extends Controller with Secured {
     Redirect(routes.Application.reviews)
   }
 
-  def users = withAuth { username => implicit request =>
-    Ok(views.html.users(User.all, username))
+  def users = withUser { user => implicit request =>
+    Ok(views.html.users(User.all, user))
   }
 
-  def userProfile(id: Long) = withAuth { username => implicit request =>
-    Ok(views.html.profile(User.find(id), username))
+  def userProfile(id: Long) = withUser { user => implicit request =>
+    Ok(views.html.profile(User.find(id), user))
   }
 
   val registrationForm = Form(tuple("username" -> nonEmptyText(1, 15),
