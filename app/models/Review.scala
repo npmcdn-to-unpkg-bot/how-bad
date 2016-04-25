@@ -24,6 +24,14 @@ object Review {
     }
   }
 
+  def findByReviewerId(reviewerId: Long): List[Review] = {
+    DB.withConnection { implicit conn =>
+      SQL("select * from review where id = {reviewer_id}").on(
+        'reviewer_id -> reviewerId
+      ).as(review *)
+    }
+  }
+
   def create(movie: String, comments: String, reviewerId: Long) {
     DB.withConnection { implicit conn =>
       SQL("""insert into review (user_id, movie, movie_id, rating, comments)

@@ -41,7 +41,7 @@ object Application extends Controller with Secured {
   }
 
   def userProfile(id: Long) = withUser { user => implicit request =>
-    Ok(views.html.profile(User.find(id), user))
+    Ok(views.html.profile(User.find(id), Review.findByReviewerId(id), user))
   }
 
   val registrationForm = Form(tuple("username" -> nonEmptyText(1, 15),
