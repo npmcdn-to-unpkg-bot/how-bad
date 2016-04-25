@@ -69,7 +69,6 @@ object Application extends Controller with Secured {
     loginForm.bindFromRequest.fold(
       errors => BadRequest("Invalid submission"),
       formInput => {
-         //TODO: login
         if (User.authenticate(formInput._1).isDefined) {
           Redirect(routes.Application.index)
             .withSession("username" -> formInput._1)
