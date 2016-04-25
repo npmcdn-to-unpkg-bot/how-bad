@@ -18,9 +18,10 @@ GET     /users/:id                  controllers.Application.userProfile(id: Long
 GET     /register                   controllers.Application.registration
 POST    /register                   controllers.Application.register
 
-# Login
+# Login/Logout
 GET     /login                      controllers.Application.loginPage
 POST    /login                      controllers.Application.login
+GET     /logout                     controllers.Application.logout
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

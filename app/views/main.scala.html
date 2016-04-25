@@ -23,6 +23,7 @@
           <li><a href="@routes.Application.login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
         } else {
           <li><a href="@routes.Application.userProfile(user.id)"><span class="glyphicon glyphicon-user"></span> @user.username</a></li>
+          <li><a href="@routes.Application.logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
         }
       </ul>
     </nav>

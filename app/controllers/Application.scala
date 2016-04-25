@@ -82,4 +82,10 @@ object Application extends Controller with Secured {
 
   val loginForm = Form(tuple("username" -> text,
                              "password" -> text))
+
+  def logout = Action { implicit request =>
+    Redirect(routes.Application.login).withNewSession.flashing(
+      "success" -> "You are now logged out."
+    )
+  }
 }
