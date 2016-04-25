@@ -138,11 +138,13 @@ Attribute  | Data type             | Description
 
 A junction table that allows a user-specific movie watchlist.
 
-All SQL code is located in [`conf/evolutions/default`](/conf/evolutions/default).
-
 ### General structure of the system
 
-The system uses the [`model`](/app/models)-[`view`](/app/views)-[`controller`](/app/controllers) (MVC) architectural pattern. Model, view and controller are located in the app directory.
+The system uses the [model](/app/models)-[view](/app/views)-[controller](/app/controllers) (MVC) architectural pattern. Model, view and controller are located in the app directory.
+
+Scala Play framework is established in [`/project/plugins.sbt`](/project/plugins.sbt)
+
+All SQL code is located in [`conf/evolutions/default`](/conf/evolutions/default).
 
 ## Running the app
 To run the app locally, e.g. for testing your changes, start the [Play][3]
