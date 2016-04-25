@@ -1,9 +1,16 @@
 package controllers
 
+import scala.concurrent.Future
+import scala.concurrent.Await
+import scala.concurrent.duration._
+
 import play.api._
 import play.api.data._
 import play.api.data.Forms._
 import play.api.mvc._
+import play.api.libs.ws._
+import play.api.libs.json._
+import play.api.Play.current
 
 import models.Review
 import models.User
@@ -12,6 +19,15 @@ object Application extends Controller with Secured {
 
   def index = withUser { user => implicit request =>
     Ok(views.html.index(reviewForm, user))
+  }
+
+  def makeOmdbRequest(movieName: String): JsValue = {
+    val requestHolder: WSRequestHolder =
+      WS.url("http://www.omdbapi.com/")
+        .withHeaders("Accept" -> "application/json")
+        .withRequestTimeout(10000)
+        .withQueryString("t" -> movieName)
+    Await.result(requestHolder.get, 10 seconds).json
   }
 
   val reviewForm = Form(tuple("movie" -> nonEmptyText,
@@ -25,8 +41,17 @@ object Application extends Controller with Secured {
     reviewForm.bindFromRequest.fold(
       errors => BadRequest(views.html.index(errors, user)),
       formInput => {
-        Review.create(formInput._1, formInput._2, user.id)
-        Redirect(routes.Application.index)
+        val omdbResponseJson = makeOmdbRequest(formInput._1)
+        if ((omdbResponseJson \ "Response").as[String] == "True") {
+          Review.create(
+            (omdbResponseJson \ "Title").as[String],
+            formInput._2,
+            user.id
+          )
+          Redirect(routes.Application.index)
+        } else {
+          Ok("Movie not found!")
+        }
       }
     )
   }
