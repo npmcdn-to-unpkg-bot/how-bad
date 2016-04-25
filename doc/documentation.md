@@ -142,6 +142,8 @@ A junction table that allows a user-specific movie watchlist.
 
 The system uses the [model](/app/models)-[view](/app/views)-[controller](/app/controllers) (MVC) architectural pattern. Model, view and controller are located in the app directory.
 
+All css and javascript code is located in public.
+
 Scala Play framework is established in [`/project/plugins.sbt`](/project/plugins.sbt)
 
 All SQL code is located in [`conf/evolutions/default`](/conf/evolutions/default).
