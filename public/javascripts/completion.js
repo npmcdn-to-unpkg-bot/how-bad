@@ -8,7 +8,8 @@ $("#movie").on("input", function() {
     },
     success: function(response, status) {
       if (response.Response == "True") {
-        $("#movie_field .info").html(response.Title);
+        var url = "http://www.imdb.com/title/" + response.imdbID;
+        $("#movie_field .info").html("<a href='"+url+"'>"+response.Title+"</a>");
       } else {
         $("#movie_field .info").html("");
       }
