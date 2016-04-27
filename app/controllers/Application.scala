@@ -47,6 +47,7 @@ object Application extends Controller with Secured {
   }
 
   val reviewForm = Form(tuple("movie" -> nonEmptyText,
+                              "rating" -> number(0, 10),
                               "comments" -> text))
 
   def reviews = withUser { user => implicit request =>
@@ -62,7 +63,8 @@ object Application extends Controller with Secured {
           Review.create(
             (omdbResponseJson \ "Title").as[String],
             (omdbResponseJson \ "imdbID").as[String],
-            formInput._2,
+            formInput._2 * 2,
+            formInput._3,
             user.id
           )
           Redirect(routes.Application.index)

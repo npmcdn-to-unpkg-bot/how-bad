@@ -1,4 +1,4 @@
-@(reviewForm: Form[(String, String)], user: User)
+@(reviewForm: Form[(String, Int, String)], user: User)
 
 @import helper._
 
@@ -16,6 +16,14 @@
     <input type="radio" id="star2" name="rating" value="2"><label for="star2">2 stars</label>
     <input type="radio" id="star1" name="rating" value="1"><label for="star1">1 star</label>
   </fieldset>
+  <input type="hidden" id="rating" value="0">
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $("input:radio").change(function() {
+        $("#rating").val(this.value);
+      });
+    });
+  </script>
 
   <br><br>
 
