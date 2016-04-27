@@ -7,6 +7,7 @@
 <h1>How bad was the last movie you saw?</h1>
 @form(routes.Application.newReview) {
   @inputText(reviewForm("movie"))
+  <script src="@routes.Assets.at("javascripts/completion.js")" type="text/javascript"></script>
 
   <fieldset class="rating">
     <input type="radio" id="star5" name="rating" value="5"><label for="star5">5 stars</label>
