@@ -5,6 +5,7 @@ $("#movie").on("input", function() {
     dataType: "json",
     data: {
         "t": $("#movie").val(),
+        "type": "movie",
     },
     success: function(response, status) {
       if (response.Response == "True") {

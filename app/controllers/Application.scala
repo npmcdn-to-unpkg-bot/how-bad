@@ -29,6 +29,7 @@ object Application extends Controller with Secured {
           .withHeaders("Accept" -> "application/json")
           .withRequestTimeout(10000)
           .withQueryString("t" -> movieName)
+          .withQueryString("type" -> "movie")
       Await.result(requestHolder.get, 10 seconds).json
     }
   }
@@ -40,6 +41,7 @@ object Application extends Controller with Secured {
           .withHeaders("Accept" -> "application/json")
           .withRequestTimeout(10000)
           .withQueryString("i" -> imdbId)
+          .withQueryString("type" -> "movie")
       Await.result(requestHolder.get, 10 seconds).json
     }
   }
