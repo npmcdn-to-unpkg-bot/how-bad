@@ -105,35 +105,8 @@ object Application extends Controller with Secured {
       errors => BadRequest("Invalid submission"),
       formInput => {
         User.create(formInput._1) // TODO: Password
-        Redirect(routes.Application.login)
+        Redirect(routes.Auth.login)
       }
-    )
-  }
-
-  def loginPage = Action {
-    Ok(views.html.login(loginForm))
-  }
-
-  def login = Action { implicit request =>
-    loginForm.bindFromRequest.fold(
-      errors => BadRequest("Invalid submission"),
-      formInput => {
-        if (User.authenticate(formInput._1).isDefined) {
-          Redirect(routes.Application.index)
-            .withSession("username" -> formInput._1)
-        } else {
-          Redirect(routes.Application.login)
-        }
-      }
-    )
-  }
-
-  val loginForm = Form(tuple("username" -> text,
-                             "password" -> text))
-
-  def logout = Action { implicit request =>
-    Redirect(routes.Application.login).withNewSession.flashing(
-      "success" -> "You are now logged out."
     )
   }
 }

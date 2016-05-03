@@ -22,9 +22,9 @@ GET     /register                   controllers.Application.registration
 POST    /register                   controllers.Application.register
 
 # Login/Logout
-GET     /login                      controllers.Application.loginPage
-POST    /login                      controllers.Application.login
-GET     /logout                     controllers.Application.logout
+GET     /login                      controllers.Auth.loginPage
+POST    /login                      controllers.Auth.login
+GET     /logout                     controllers.Auth.logout
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

@@ -5,7 +5,7 @@
 @main("Login", null) {
 
 <h1>Login</h1>
-@form(routes.Application.login) {
+@form(routes.Auth.login) {
   @inputText(loginForm("username"))
   @inputText(loginForm("password"))
   <input type="submit" class="btn btn-success" value="Login">
